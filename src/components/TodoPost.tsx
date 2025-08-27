@@ -1,18 +1,34 @@
 import type { ReactElement } from "react";
 
-export const TodoPost = (): ReactElement => {
+interface IPostProps {
+    todoText: string,
+    authorName: string,
+    id: number,
+    onRemove: (id: number) => void
+}
+
+export const TodoPost = ({todoText, authorName, id, onRemove}: IPostProps): ReactElement => {
+    const handleRemove = () => {
+        onRemove(id);
+        alert("Remove!");
+    }
+    const handleFinished = () => {
+        //byta ikonen
+        alert("Finished!");
+    }
+    
     return (
     <article className="todo-post">
-        <button>O</button>
+        <button onClick={handleFinished}>O</button>
             <section className="text-wrapper">
                 <div className="todo-text">
-                    <p>Sak att göra</p>
+                    <p>{todoText}</p>
                 </div>
                 <div className="todo-author">
-                    <p>Cilla</p>
+                    <p>{authorName}</p>
                 </div>
             </section>
-        <button>X</button>
+        <button onClick={handleRemove}>X</button>
     </article>
     )
 };

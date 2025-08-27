@@ -1,7 +1,24 @@
+import { useState } from 'react';
 import './assets/App.css'
-import { TodoPost } from './components/TodoPost'
+import { InputField } from './components/InputField'
+import { TodoList } from './components/TodoList'
+
+export interface ITodo {
+  id: number;
+  todoText: string;
+  authorName: string;
+}
 
 function App() {
+  const [todos, setTodos] = useState<ITodo[]>([]);
+
+  const addToList = (todo: ITodo) => {
+    setTodos((prevTodos) => [...prevTodos, todo]);
+  };
+
+  const removeTodo = (id: number) => {
+    setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
+  }
 
   return (
     <>
@@ -10,18 +27,9 @@ function App() {
           <h1>Todo</h1>
         </header>      
         <section className='content-wrapper'>
-          <section className="todo-list">
-              <TodoPost/>
-          </section>
+            <TodoList todos={todos} onRemove={removeTodo}/>
           <section className="todo-form">
-            <form>
-              <div className="todo-input">
-                <input type="text" placeholder="Skriv vad du ska göra"></input>
-              </div>
-               <div className="name-input">
-                <input type="text" placeholder="Namn"></input>
-              </div>
-            </form>
+            <InputField addToList={addToList}/>
           </section>
         </section>
       </main>
