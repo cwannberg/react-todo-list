@@ -12,7 +12,7 @@ export const TodoList = ({ todos, onRemove}: TodoListProps): ReactElement => {
         <section className="todo-list">
         { 
         todos.map((todo) =>(
-            <TodoPost key={todo.id} id={todo.id} todoText= {todo.todoText} authorName={todo.authorName} onRemove={onRemove}/>
+            <TodoPost key={todo.id} id={todo.id} todoText= {todo.todoText} authorName={todo.authorName} timeStamp={todo.timeStamp} onRemove={onRemove}/>
         ))} 
         </section>
     )

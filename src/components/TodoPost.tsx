@@ -4,11 +4,13 @@ interface IPostProps {
     todoText: string,
     authorName: string,
     id: number,
+    timeStamp: string;
     onRemove: (id: number) => void
 }
 
-export const TodoPost = ({todoText, authorName, id, onRemove}: IPostProps): ReactElement => {
+export const TodoPost = ({todoText, authorName, id, timeStamp, onRemove}: IPostProps): ReactElement => {
     const [finished, setFinished] = useState(false);
+    
     
     const handleRemove = () => {
         onRemove(id);
@@ -25,9 +27,14 @@ export const TodoPost = ({todoText, authorName, id, onRemove}: IPostProps): Reac
                 <div className="todo-text">
                     <p>{todoText}</p>
                 </div>
-                <div className="todo-author">
-                    <p>{authorName}</p>
-                </div>
+                <section className="author-and-timestamp">
+                    <div className="todo-author">
+                        <p>{authorName}</p>
+                    </div>
+                    <div className="timeStamp">
+                        <p>{timeStamp}</p>
+                    </div>
+                </section>
             </section>
         <span className="material-symbols-outlined" onClick={handleRemove}>delete</span>
     </article>

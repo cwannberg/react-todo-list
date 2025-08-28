@@ -18,7 +18,8 @@ export const InputField = ({addToList}: InputFieldProps): ReactElement => {
         const newTodo: ITodo = {
             id: Date.now(),
             todoText,
-            authorName
+            authorName,
+            timeStamp: new Date().toLocaleString()
         }
         addToList(newTodo);
         setTodoText("");
@@ -33,7 +34,7 @@ export const InputField = ({addToList}: InputFieldProps): ReactElement => {
         <div className="name-input">
             <input value={authorName} type="text" placeholder="Namn" onChange={(e) => setAuthorName(e.target.value)}/>
         </div>
-        <button>Post</button>
+        <button type="submit" className="material-symbols-outlined">add_circle</button>
     </form>
     )
 }

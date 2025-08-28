@@ -7,6 +7,7 @@ export interface ITodo {
   id: number;
   todoText: string;
   authorName: string;
+  timeStamp: string;
 }
 
 function App() {
