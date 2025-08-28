@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { useState, type ReactElement } from "react";
 
 interface IPostProps {
     todoText: string,
@@ -8,18 +8,19 @@ interface IPostProps {
 }
 
 export const TodoPost = ({todoText, authorName, id, onRemove}: IPostProps): ReactElement => {
+    const [finished, setFinished] = useState(false);
+    
     const handleRemove = () => {
         onRemove(id);
-        alert("Remove!");
     }
     const handleFinished = () => {
-        //byta ikonen
-        alert("Finished!");
+        setFinished(!finished);
     }
     
     return (
     <article className="todo-post">
-        <button onClick={handleFinished}>O</button>
+        <span className="material-symbols-outlined" onClick={handleFinished}>
+            {finished ? "check_circle" : "radio_button_unchecked"}</span>
             <section className="text-wrapper">
                 <div className="todo-text">
                     <p>{todoText}</p>
@@ -28,7 +29,7 @@ export const TodoPost = ({todoText, authorName, id, onRemove}: IPostProps): Reac
                     <p>{authorName}</p>
                 </div>
             </section>
-        <button onClick={handleRemove}>X</button>
+        <span className="material-symbols-outlined" onClick={handleRemove}>delete</span>
     </article>
     )
 };
